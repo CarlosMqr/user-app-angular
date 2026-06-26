@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { User } from '../../models/user';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,23 @@ import { FormsModule } from '@angular/forms';
 export class UserComponent  {
 
   @Input() users: User[] = [];
+
+  @Output() idUserEventEmitter = new EventEmitter();
+
+  @Output() selectUserEventEmitter = new EventEmitter();
+
+  onRemoveUser(id: number): void {
+    const confirmRemuve = confirm(`¿Está seguro de eliminar el usuario ?`);
+    if(confirmRemuve) {
+      this.idUserEventEmitter.emit(id);
+    }
+  }
+
+  onSelectUser(user: User): void {
+    this.selectUserEventEmitter.emit(user);
+  }
+
+  
 
   selectedActions: { [key: number]: string } = {};
  
