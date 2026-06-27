@@ -4,11 +4,14 @@ import { UserService } from '../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'user-app',
+  standalone: true,
   imports: [UserComponent, UserFormComponent],
-  templateUrl: './user-app.component.html'
+  templateUrl: './user-app.component.html',
+  styleUrls: ['./user-app.component.css'] 
 })
 export class UserAppComponent implements OnInit {
   title: string = 'Listado de usuarios';
@@ -16,6 +19,8 @@ export class UserAppComponent implements OnInit {
   users: User[] = [];
 
   userSelected: User;
+
+  open: boolean = false;
   
   constructor(private service: UserService) {//se inyecta el service 
     this.userSelected = new User();
@@ -28,21 +33,49 @@ export class UserAppComponent implements OnInit {
 
   addUser(user: User) {
     if(user.id > 0){
-      this.users = this.users.map( u => (u.id == user.id)? { ...user}: u);
+      this.users = this.users.map(u => (u.id == user.id) ? { ...user} : u);
     }else{
-      this.users = [...this.users, {... user, id: new Date().getTime()}];
+      this.users = [... this.users, { ... user, id: new Date().getTime()}];
     }
+    Swal.fire({
+  title: "Guardado!",
+  text: "Usuario guardado con exito!",
+  icon: "success"
+});
     this.userSelected = new User();
+    this.setOpen();
   }
 
-  removeUser(id: number): void {
-    this.users = this.users.filter(user => user.id !== id);
+   removeUser(id: number): void {
+    Swal.fire({
+      title: "Seguro que quiere eliminar?",
+      text: "Cuidado el usuario sera eliminado del sistema!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.users = this.users.filter(user => user.id != id);
+        Swal.fire({
+          title: "Eliminado!",
+          text: "Usuario eliminado con exito.",
+          icon: "success"
+        });
+      }
+    });
+    
   }
 
-  setSelectedUser(user: User): void {
-    this.userSelected = {...user};
+  setSelectedUser(userRow: User): void {
+    this.userSelected = { ...userRow };
+    this.open = true;
   }
 
+  setOpen(){
+    this.open = !this.open;
+  }
  
 
 }

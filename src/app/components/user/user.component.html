@@ -1,7 +1,7 @@
 @if (users.length == 0) {
     <div class="alert alert-warning"> No hay usuarios registrados</div>
 } @else {
-<table class="table table-hover table-striped table-bordered shadow">
+<table class="table table-hover table-striped">
     <thead>
         <tr>
             <th>name</th>
@@ -26,7 +26,7 @@
             </td>
 
             <td>
-                <button class="btn btn-warning btn-sm" (click)="onSelectUser(user)">
+                <button class="btn btn-info btn-sm" (click)="onSelectUser(user)">
                     update
                 </button>
             </td>
