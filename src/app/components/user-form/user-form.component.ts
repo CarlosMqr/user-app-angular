@@ -1,42 +1,33 @@
-import { Component, Output, EventEmitter, Input} from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
+import { SharingDataService } from '../../services/sharing-data.service';
 
 @Component({
   selector: 'user-form',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './user-form.component.html'
+  templateUrl: './user-form.component.html',
 })
 export class UserFormComponent {
+  user: User;
 
- @Input() user: User;
+  constructor(private sharinData: SharingDataService) {
+    this.user = new User();
+  }
 
- @Output() openEventEmitter = new EventEmitter<void>();
-
- @Output() newUserEventEmitter: EventEmitter<User> = new EventEmitter();
-
-constructor() {
-  this.user = new User();
-}
-
-onSubmit(userForm: NgForm): void {
-  if(userForm.valid){
-      this.newUserEventEmitter.emit(this.user);
+  onSubmit(userForm: NgForm): void {
+    if (userForm.valid) {
+      this.sharinData.newUserEventEmitter.emit(this.user);
       console.log(this.user);
-  }
-  userForm.reset();
-  userForm.resetForm();
-} 
-
-onClear(userForm: NgForm): void{
-  this.user = new User();
-  userForm.reset();
-  userForm.resetForm();
-}
-
-onOpenClose(): void {
-    this.openEventEmitter.emit();
+    }
+    userForm.reset();
+    userForm.resetForm();
   }
 
+  onClear(userForm: NgForm): void {
+    this.user = new User();
+    userForm.reset();
+    userForm.resetForm();
+  }
 }
