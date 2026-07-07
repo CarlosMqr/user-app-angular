@@ -9,18 +9,22 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   private users: User[] = [];
 
+  private apiUrl = 'http://localhost:8080/api';
+
   constructor(private http: HttpClient) {}
 
   findAll(): Observable<User[]> {
     //return of(this.users);
-    return this.http.get<User[]>('http://localhost:8080/api');
+    return this.http.get<User[]>(this.apiUrl);
   }
 
-  save(user: User): Observable<User> { 
-    return this.http.post<User>('http://localhost:8080/api/users', user);
+  findById(id: number): Observable<User> { 
+    return this.http.get<User>(`${this.apiUrl}/users/${id}`);
   }
 
-  findById(id: number): Observable<User | undefined> {
+
+/*  findById(id: number): Observable<User | undefined> {
     return of(this.users.find((user) => user.id === id));
   }
+  */
 }
