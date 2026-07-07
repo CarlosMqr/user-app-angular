@@ -7,16 +7,12 @@ import { User } from '../models/user';
 export class SharingDataService {
   private _newUserEventEmitter: EventEmitter<User> = new EventEmitter();
   private _idUserEventEmitter = new EventEmitter();
-  private _selectUserEventEmitter = new EventEmitter();
 
   constructor() {}
-  get newUserEventEmitter(): EventEmitter<User> { 
+  get newUserEventEmitter(): EventEmitter<User> {
     return this._newUserEventEmitter;
   }
-  get idUserEventEmitter(): EventEmitter<number> { 
+  get idUserEventEmitter(): EventEmitter<number> {
     return this._idUserEventEmitter;
-  }
-  get selectUserEventEmitter(): EventEmitter<User> { 
-    return this._selectUserEventEmitter;
   }
 }

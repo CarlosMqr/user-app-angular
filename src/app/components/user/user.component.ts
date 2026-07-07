@@ -18,12 +18,11 @@ export class UserComponent {
   constructor(
     private service: UserService,
     private router: Router,
-    private sharinData: SharingDataService,
-  ) {
+    private sharinData: SharingDataService) {
     if (this.router.currentNavigation()?.extras.state) {
       this.users = this.router.currentNavigation()?.extras.state!['users'];
     } else {
-      this.service.findAll().subscribe((users) => (this.users = this.users));
+      this.service.findAll().subscribe(users => this.users = users);
     }
   }
 
@@ -32,6 +31,6 @@ export class UserComponent {
   }
 
   onSelectUser(user: User): void {
-    this.sharinData.selectUserEventEmitter.emit(user);
+    this.router.navigate(['/users/edit', user.id], {state: {user}});
   }
 }
