@@ -31,4 +31,8 @@ export class UserService {
   findAll(): Observable<User[]> {
     return of(this.users);
   }
+
+  findById(id: number): Observable<User | undefined> {
+    return of(this.users.find(user => user.id === id));
+  }
 }

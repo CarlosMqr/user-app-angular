@@ -32,5 +32,6 @@ export class UserComponent {
 
   onSelectUser(user: User): void {
     this.router.navigate(['/users/edit', user.id], {state: {user}});
+    //this.sharinData.selectUserEventEmitter.emit(user);
   }
 }
