@@ -20,8 +20,15 @@ export class UserService {
 
   findById(id: number): Observable<User> { 
     return this.http.get<User>(`${this.apiUrl}/users/${id}`);
+  } 
+
+  create(user: User): Observable<User> { 
+    return this.http.post<User>(`${this.apiUrl}/users`, user)
   }
 
+  update(user: User): Observable<User> { 
+    return this.http.put<User>(`${this.apiUrl}/user/${user.id}`, user);
+  }
 
 /*  findById(id: number): Observable<User | undefined> {
     return of(this.users.find((user) => user.id === id));

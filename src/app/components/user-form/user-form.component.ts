@@ -20,12 +20,12 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sharinData.selectUserEventEmitter.subscribe(user => this.user = user);
+    //this.sharinData.selectUserEventEmitter.subscribe(user => this.user = user);
     this.route.paramMap.subscribe(params => {
       const id: number = +(params.get('id') || '0');
       if (id > 0) {
-         this.sharinData.findUserByIdEventEmitter.emit(id);
-        //this.service.findById(id).subscribe(user => this.user = user); va a intellj
+         //this.sharinData.findUserByIdEventEmitter.emit(id);
+        this.service.findById(id).subscribe(user => this.user = user); //va a intellj
       }
     });
   }
