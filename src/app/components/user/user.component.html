@@ -6,29 +6,31 @@
   <div class="alert alert-warning">No hay usuarios registrados</div>
 } @else {
   <table class="table table-hover table-striped">
-    <thead>
+    <thead class="table-success">
       <tr>
-        <th>name</th>
-        <th>lastname</th>
-        <th>email</th>
-        <th>username</th>
-        <th>remove</th>
-        <th>update</th>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>User Name</th>
+       <th colspan="2" class="text-center">Action</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       @for (user of users; track $index) {
         <tr>
+          <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.lastname }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.username }}</td>
-          <td>
-            <button class="btn btn-danger btn-sm" (click)="onRemoveUser(user.id)">remove</button>
+          <td class="text-center">
+            <button class="btn btn-danger btn-sm btn-3d" (click)="onRemoveUser(user.id!)">Remove</button>
           </td>
 
-          <td>
-            <button class="btn btn-info btn-sm" [routerLink]="['/users/edit', user.id]">update</button>
+          <td class="text-center">
+            <button class="btn btn-info btn-sm btn-3d" [routerLink]="['/users/edit', user.id]">Update</button>
           </td>
         </tr>
       }

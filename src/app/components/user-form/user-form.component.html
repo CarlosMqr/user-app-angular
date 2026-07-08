@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card-content">
     <div class="card-header">
-      <h5 class="card-title">Form {{ user.id > 0 ? 'Update' : 'Create' }} User</h5>
+      <h5 class="card-title"> {{ (user.id ?? 0) > 0 ? 'Actualizar' : 'Registrar' }} Usuario</h5>
     </div>
     <div class="card-body">
       <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
         <div>
           <input
-            placeholder="Name"
+            placeholder="Nombre"
             name="name"
             [(ngModel)]="user.name"
             class="form-control my-2"
@@ -22,7 +22,7 @@
         </div>
         <div>
           <input
-            placeholder="Lastname"
+            placeholder="Apellido"
             name="lastname"
             [(ngModel)]="user.lastname"
             class="form-control my-2"
@@ -99,7 +99,7 @@
 
         <div>
           <button type="submit" class="btn btn-primary m-2" [disabled]="userForm.invalid">
-            {{ user.id > 0 ? 'Update' : 'Create' }}
+            {{ (user.id ?? 0) > 0 ? 'Update' : 'Create' }}
           </button>
 
           <button type="button" class="btn btn-secondary my-2" (click)="onClear(userForm)">

@@ -30,6 +30,10 @@ export class UserService {
     return this.http.put<User>(`${this.apiUrl}/user/${user.id}`, user);
   }
 
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/userd/${id}`);
+  }
+
 /*  findById(id: number): Observable<User | undefined> {
     return of(this.users.find((user) => user.id === id));
   }

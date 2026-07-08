@@ -50,10 +50,11 @@ export class UserAppComponent implements OnInit {
         
       } else {
         this.service.create(user).subscribe(userNew => { 
+          console.log('userNew', userNew);
          this.users = [... this.users, { ...userNew }]; 
         })
       }
-      this.router.navigate(['/users'], { state: { users: this.users } });
+      this.router.navigate(['/users']);
       Swal.fire({
         title: 'Guardado!',
         text: 'Usuario guardado con exito!',
@@ -75,9 +76,11 @@ export class UserAppComponent implements OnInit {
         confirmButtonText: 'Si',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.users = this.users.filter(user => user.id != id);
-          this.router.navigate(['/users/create'], { skipLocationChange: true }).then(() => {
-            this.router.navigate(['/users'], { state: { users: this.users } });
+          this.service.delete(id).subscribe(() => { 
+            this.users = this.users.filter((user) => user.id != id);
+            this.router.navigate(['/users/create'], { skipLocationChange: true }).then(() => {
+              this.router.navigate(['/users']);
+            });
            })
           Swal.fire({
             title: 'Eliminado!',
