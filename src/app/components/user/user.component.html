@@ -1,12 +1,12 @@
 <h2>{{ title }}</h2>
 
-<button class="btn btn-primary my-4" [routerLink]="['/users/create']">Crear Usuario</button>
+<button class="btn btn-primary my-4 btn-3d" [routerLink]="['/users/create']">Crear Usuario</button>
 
 @if (users.length == 0) {
   <div class="alert alert-warning">No hay usuarios registrados</div>
 } @else {
-  <table class="table table-hover table-striped">
-    <thead class="table-success">
+  <table class="table table-hover tabla-usuarios">
+    <thead class="mi-header">
       <tr>
         <th>ID</th>
         <th>Nombre</th>
@@ -14,7 +14,6 @@
         <th>Email</th>
         <th>User Name</th>
        <th colspan="2" class="text-center">Action</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>

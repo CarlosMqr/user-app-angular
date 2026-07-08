@@ -9,6 +9,7 @@ import { SharingDataService } from '../../services/sharing-data.service';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
   title: string = 'Listado de usuarios';
@@ -18,9 +19,10 @@ export class UserComponent implements OnInit {
   constructor(
     private service: UserService,
     private router: Router,
-    private sharinData: SharingDataService) {}
+    private sharinData: SharingDataService,
+  ) {}
   ngOnInit(): void {
-     this.service.findAll().subscribe((users) => (this.users = users));
+    this.service.findAll().subscribe((users) => (this.users = users));
   }
 
   onRemoveUser(id: number): void {
