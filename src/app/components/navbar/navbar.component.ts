@@ -5,7 +5,9 @@ import { User } from '../../models/user';
 @Component({
   selector: 'navbar',
   imports: [RouterModule],
-  templateUrl: './navbar.component.html'
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+  title: string = 'Listado de usuarios';
 }

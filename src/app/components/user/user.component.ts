@@ -12,7 +12,7 @@ import { SharingDataService } from '../../services/sharing-data.service';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  title: string = 'Listado de usuarios';
+  title: string = '';
 
   users: User[] = [];
 

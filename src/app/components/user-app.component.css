@@ -40,3 +40,22 @@
     }
 }
 
+
+
+
+
+.footer{
+    background-color: #003566;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    border-top: 3px solid ;
+    box-shadow: 0 -3px 10px #0d6efd(0,0,0,.2);
+}
+
+.footer p{
+    margin: 40;
+}

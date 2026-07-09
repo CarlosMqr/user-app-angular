@@ -1,9 +1,10 @@
 <h2>{{ title }}</h2>
+<div class="container contenedor-usuarios">
 
-<button class="btn btn-primary my-4 btn-3d" [routerLink]="['/users/create']">Crear Usuario</button>
+<button class="btn btn-success my-4 btn-3d" [routerLink]="['/users/create']">Crear Usuario</button>
 
 @if (users.length == 0) {
-  <div class="alert alert-warning">No hay usuarios registrados</div>
+  <div class="alert alert-warning contenedor-usuarios">No hay usuarios registrados</div>
 } @else {
   <table class="table table-hover tabla-usuarios">
     <thead class="mi-header">
@@ -36,3 +37,4 @@
     </tbody>
   </table>
 }
+</div>
