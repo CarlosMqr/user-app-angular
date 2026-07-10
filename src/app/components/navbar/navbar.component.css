@@ -1,0 +1,57 @@
+.navbar{
+    background: linear-gradient(90deg,#003566,#0da5fd);
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+/* Animación para los enlaces de la navbar */
+.navbar-brand{
+    color:white !important;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.navbar-nav .nav-link{
+    color:white !important;
+    transition:.3s;
+}
+
+.navbar-nav .nav-link:hover{
+    color:#6af08c !important;
+}
+
+
+.navbar{
+    border-radius: 0 0 15px 15px;
+}
+
+
+/* Animación para el logo de la navbar */
+.navbar-brand{
+    transition:.3s;
+}
+
+.navbar-brand:hover{
+    transform:scale(1.05);
+}
+
+
+/* titulo-navbar */
+.mi-navbar{
+    background: linear-gradient(90deg, #003566, #0d6efd);
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+
+.titulo-navbar{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+
+

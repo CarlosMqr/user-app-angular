@@ -9,5 +9,6 @@ import { User } from '../../models/user';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+  @Input() users: User[] = [];
   title: string = 'Listado de usuarios';
 }

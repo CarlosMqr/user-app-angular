@@ -44,22 +44,41 @@ export class UserAppComponent implements OnInit {
     this.sharingData.newUserEventEmitter.subscribe(user => {
       const isEdit = user.id != null && user.id > 0;
       if (isEdit) {
-        this.service.update(user).subscribe(userUpdated => {
-          this.users = this.users.map(u => (u.id == userUpdated.id) ? { ...userUpdated } : u);
-        })
+        this.service.update(user).subscribe(
+          {
+            next: (userUpdated) => {    
+              this.users = this.users.map(u => (u.id == userUpdated.id) ? { ...userUpdated } : u);
+               
+           Swal.fire({
+             title: 'Actualizado!',
+             text: 'Usuario actualizado con exito!',
+             icon: 'success',
+           });
+              this.router.navigate(['/users']);
+        },
+          error: (err) => {
+            // console.log('Error al actualizar el usuario', err.error);
+            this.sharingData.errorsUserFormEventEmitter.emit(err.error);
+          }})
         
       } else {
-        this.service.create(user).subscribe(userNew => { 
-          console.log('userNew', userNew);
-         this.users = [... this.users, { ...userNew }]; 
-        })
+        this.service.create(user).subscribe({
+          next: userNew => {
+            console.log('userNew', userNew);
+            this.users = [...this.users, { ...userNew }];            
+             Swal.fire({
+               title: 'Guardado!',
+               text: 'Usuario guardado con exito!',
+               icon: 'success',
+             });
+             this.router.navigate(['/users']);
+          },
+          error: (err) => {
+            //console.log('Error al crear el usuario', err.error);
+            this.sharingData.errorsUserFormEventEmitter.emit(err.error);
+          },
+        });
       }
-      this.router.navigate(['/users']);
-      Swal.fire({
-        title: 'Guardado!',
-        text: 'Usuario guardado con exito!',
-        icon: 'success',
-      });
     })
   
   }
